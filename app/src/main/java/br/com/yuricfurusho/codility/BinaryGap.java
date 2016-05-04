@@ -1,6 +1,5 @@
 package br.com.yuricfurusho.codility;
 
-import java.text.StringCharacterIterator;
 import java.util.logging.Logger;
 
 /**
@@ -32,30 +31,37 @@ public class BinaryGap {
         // write your code in Java SE 8
         String binary = BinaryOf(N);
 
-        int gapSize = countBiggestZeroSequence(binary);
+        int gapSize = findBiggestGap(binary);
 
         return gapSize;
     }
 
-    private static int countBiggestZeroSequence(String s) {
-        StringCharacterIterator iterator = new StringCharacterIterator(s);
+    private static int findBiggestGap(String string) {
+        char c;
         int count = 0;
-        if (iterator.current() == '0') {
-            count++;
-            iterator.next();
-        } else {
+        int maior = 0;
 
-            count = 0;
+        for (int i = 0; i < string.length(); i++) {
+            c = string.charAt(i);
+
+            if (c == '0') {
+                count++;
+            } else {
+                if (count > maior) {
+                    maior = count;
+                }
+                count = 0;
+            }
         }
-        return null;
+        return maior;
     }
 
     public static String BinaryOf(int decimalNumber) {
         if (decimalNumber <= 1) {
-            return Integer.toString(decimalNumber);   // KICK OUT OF THE RECURSION
+            return Integer.toString(decimalNumber);
         }
 
-        return BinaryOf(decimalNumber / 2)  + "" +  decimalNumber % 2;
+        return BinaryOf(decimalNumber / 2) + "" + decimalNumber % 2;
     }
 
 }
