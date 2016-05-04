@@ -1,11 +1,16 @@
 package br.com.yuricfurusho.codility;
 
+import java.util.logging.Logger;
+
 /**
  * Created by maryuri on 28/04/16.
  */
 public class EquiPoints {
-    //[-1,3,-4,5,1,-6,2,1]
+//    [-1,3,-4,5,1,-6,2,1]
 //    2147483647
+
+    private static Logger LOGGER = Logger.getLogger(EquiPoints.class.getName());
+
     public static void main(String[] args) {
         int[] arrayExemplo = {-1, 3, -4, 5, 1, -6, 2, 1};
         int[] arrayExtremo = {-1, 3, -4, 5, -2147483647, -6, 2, 2147483647};
@@ -33,6 +38,7 @@ public class EquiPoints {
                 sumLeft = sumLeft + A[i - 1];
             }
             sumRight = sumTotal - A[i] - sumLeft;
+            LOGGER.info("i:" + i);
             if (sumRight == sumLeft)
                 return i;
         }
